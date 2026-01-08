@@ -27,8 +27,14 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        /* 修正1: 背景を参考画像に合わせてドット＋ピンクグラデーションに変更し、透過させる */
         .hero-bg {
-            background: radial-gradient(circle at top right, #ffe4e6, #fff1f2, #ffffff);
+            background-color: #ffffff;
+            background-image: 
+                radial-gradient(circle at 100% 0%, rgba(251, 113, 133, 0.2) 0%, transparent 50%), /* 右上のピンク */
+                radial-gradient(circle at 0% 100%, rgba(251, 113, 133, 0.05) 0%, transparent 40%), /* 左下の薄いピンク */
+                radial-gradient(#e5e7eb 1px, transparent 1px); /* ドットパターン */
+            background-size: 100% 100%, 100% 100%, 16px 16px; /* ドットの間隔設定 */
         }
         input[type=number]::-webkit-inner-spin-button, 
         input[type=number]::-webkit-outer-spin-button { 
@@ -66,8 +72,8 @@
         const { useState, useEffect } = React;
 
         const Icons = {
-            // 修正: 星のアイコンを一般的な五角星の形に変更
-            Star: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>,
+            // 修正2: 星アイコンをスリムで塗りつぶされたデザインに変更
+            Star: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.0006 15.9798L4.94715 19.6869L6.29366 11.8341L0.587158 6.2718L8.47339 5.12593L12.0006 -0.000244141L15.5278 5.12593L23.4141 6.2718L17.7076 11.8341L19.0541 19.6869L12.0006 15.9798Z"/></svg>,
             ShieldCheck: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>,
             TrendingUp: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
             RefreshCw: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>,
@@ -115,7 +121,6 @@
                 <header className={`fixed w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/95 shadow-sm py-3' : 'bg-transparent py-5'}`}>
                     <div className="container mx-auto px-6 flex justify-between items-center">
                         <div className="flex items-center gap-2">
-                            {/* 修正: ここで新しいStarアイコンを使用 */}
                             <Star className="w-6 h-6 text-brand-600" />
                             <span className="text-2xl font-bold tracking-wide serif text-gray-800">GOD-CLEANER-GOLD</span>
                         </div>
@@ -152,13 +157,12 @@
         const Hero = () => {
             return (
                 <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden hero-bg">
-                    <div className="absolute inset-0 bg-white/60"></div> 
+                    {/* 修正1: 白い半透明のオーバーレイを削除して背景を透過させる */}
+                    {/* <div className="absolute inset-0 bg-white/60"></div> */}
                     
                     <div className="container mx-auto px-6 relative z-10">
-                        {/* 修正: 左右のレイアウトに変更 */}
                         <div className="grid lg:grid-cols-2 gap-12 items-center">
                             
-                            {/* 左側：テキストコンテンツ */}
                             <div className="text-center lg:text-left animate-fade-in-up">
                                 <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-50 border border-brand-100 text-brand-800 text-sm font-medium mb-8">
                                     <span className="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></span>
@@ -185,12 +189,9 @@
                                 </div>
                             </div>
                             
-                            {/* 右側：画像コンテンツ（修正: ここに画像を追加） */}
                             <div className="relative animate-fade-in-up" style={{animationDelay: '0.2s'}}>
-                                {/* 背景の装飾的な光 */}
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-gradient-to-br from-brand-100/40 to-transparent rounded-full blur-3xl -z-10"></div>
                                 
-                                {/* 本体画像 */}
                                 <img 
                                     src="./s_s_gc-photo01.png" 
                                     alt="GOD-CLEANER-GOLD本体と施術の様子" 
@@ -637,7 +638,6 @@
                 <footer className="bg-gray-900 text-white py-12 border-t border-gray-800">
                     <div className="container mx-auto px-6 text-center">
                         <div className="flex items-center justify-center gap-2 mb-6">
-                            {/* 修正: ここで新しいStarアイコンを使用 */}
                             <Star className="w-5 h-5 text-brand-600" />
                             <span className="text-xl font-bold serif">Mindfitness</span>
                         </div>

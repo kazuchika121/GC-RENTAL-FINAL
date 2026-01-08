@@ -27,15 +27,7 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
-        /* 修正1: 背景を参考画像に合わせてドット＋ピンクグラデーションに変更し、透過させる */
-        .hero-bg {
-            background-color: #ffffff;
-            background-image: 
-                radial-gradient(circle at 100% 0%, rgba(251, 113, 133, 0.2) 0%, transparent 50%), /* 右上のピンク */
-                radial-gradient(circle at 0% 100%, rgba(251, 113, 133, 0.05) 0%, transparent 40%), /* 左下の薄いピンク */
-                radial-gradient(#e5e7eb 1px, transparent 1px); /* ドットパターン */
-            background-size: 100% 100%, 100% 100%, 16px 16px; /* ドットの間隔設定 */
-        }
+        /* 以前の hero-bg クラスは不要になったため削除、もしくは他のセクションで使う場合は残しても影響ありません */
         input[type=number]::-webkit-inner-spin-button, 
         input[type=number]::-webkit-outer-spin-button { 
             -webkit-appearance: none; 
@@ -72,8 +64,8 @@
         const { useState, useEffect } = React;
 
         const Icons = {
-            // 修正2: 星アイコンをスリムで塗りつぶされたデザインに変更
-            Star: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12.0006 15.9798L4.94715 19.6869L6.29366 11.8341L0.587158 6.2718L8.47339 5.12593L12.0006 -0.000244141L15.5278 5.12593L23.4141 6.2718L17.7076 11.8341L19.0541 19.6869L12.0006 15.9798Z"/></svg>,
+            // 修正: 星アイコンをよりスリムな形状に変更
+            Star: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l2.4 7.2h7.6l-6 4.8 2.4 7.2-6-4.8-6 4.8 2.4-7.2-6-4.8h7.6z"/></svg>,
             ShieldCheck: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>,
             TrendingUp: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
             RefreshCw: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M8 16H3v5"/></svg>,
@@ -156,44 +148,43 @@
 
         const Hero = () => {
             return (
-                <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden flex items-center justify-center"
-                    style={{
-                        // ここで背景画像を指定しています
-                        backgroundImage: "url('./s_s_gc-photo01.png')", 
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center center',
-                        backgroundRepeat: 'no-repeat'
-                    }}
-                >
-                    {/* 背景画像を薄くするための白いフィルター（オーバーレイ）です。
-                      bg-white/85 の「85」を小さくすると写真が濃くなり、大きくすると白くなります。
-                    */}
-                    <div className="absolute inset-0 bg-white/85 z-0"></div>
+                <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden flex items-center justify-center">
+                    {/* 修正: 背景画像をimgタグで配置（確実に表示させるため） */}
+                    <div className="absolute inset-0 z-0">
+                        <img 
+                            src="./s_s_gc-photo01.png" 
+                            alt="Background" 
+                            className="w-full h-full object-cover"
+                            onError={(e) => {
+                                // 画像読み込みエラー時のフォールバック（デバッグ用）
+                                e.target.style.display = 'none';
+                                e.target.parentNode.style.backgroundColor = '#fecdd3'; // エラー時は薄いピンク背景
+                            }}
+                        />
+                        {/* オーバーレイ（半透明の白フィルター） */}
+                        <div className="absolute inset-0 bg-white/85"></div>
+                    </div>
                     
-                    {/* コンテンツエリア（中央寄せレイアウトに変更） */}
+                    {/* コンテンツエリア */}
                     <div className="container mx-auto px-6 relative z-10">
                         <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
                             
-                            {/* ラベル */}
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/80 border border-brand-100 text-brand-800 text-sm font-medium mb-8 shadow-sm backdrop-blur-sm">
                                 <span className="w-2 h-2 rounded-full bg-brand-600 animate-pulse"></span>
                                 審査通過率95%以上・代理店様キャンペーン実施中
                             </div>
                             
-                            {/* 見出し */}
                             <h1 className="text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight tracking-tighter mb-6 drop-shadow-sm">
                                 話題のデトックスマシン<br/>
                                 <span className="gradient-text">GOD-CLEANER-GOLD</span>を<br/>
                                 リスク<span className="text-brand-600" style={{ fontSize: '1.1em' }}>ゼロ</span>で導入しませんか？
                             </h1>
                             
-                            {/* 説明文 */}
                             <p className="text-lg text-gray-700 mb-10 leading-relaxed font-medium">
                                 購入する時代は終わりました。月額定額制のレンタルシステムで、<br className="hidden lg:block"/>
                                 資金繰りの不安なく、最高スペックのデトックス機器をあなたのサロンへ。
                             </p>
                             
-                            {/* ボタンエリア */}
                             <div className="flex flex-col sm:flex-row gap-4 justify-center">
                                 <a href="#simulation" className="px-8 py-4 bg-brand-800 text-white text-lg font-bold rounded-full hover:bg-brand-900 transition-all shadow-xl shadow-brand-200 flex items-center justify-center gap-2">
                                     <Calculator className="w-5 h-5" />

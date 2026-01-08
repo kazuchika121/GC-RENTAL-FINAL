@@ -62,7 +62,6 @@
         const { useState, useEffect } = React;
 
         const Icons = {
-            // 修正: 星アイコンをより鋭角でシャープな形状に変更しました
             Star: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0L14.5 9L24 9L16.5 14.5L19 24L12 18.5L5 24L7.5 14.5L0 9L9.5 9L12 0Z"/></svg>,
             ShieldCheck: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/><path d="m9 12 2 2 4-4"/></svg>,
             TrendingUp: (props) => <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>,
@@ -147,23 +146,19 @@
         const Hero = () => {
             return (
                 <section className="relative pt-32 pb-20 lg:pt-40 lg:pb-32 overflow-hidden flex items-center justify-center">
-                    {/* 修正: imgタグを使った背景表示（画像ファイル名 s_s_gc-photo01.png が同じ階層にあれば表示されます） */}
                     <div className="absolute inset-0 z-0">
                         <img 
                             src="./s_s_gc-photo01.png" 
                             alt="Background" 
                             className="w-full h-full object-cover"
                             onError={(e) => {
-                                // 画像が見つからない場合のエラーハンドリング
                                 e.target.style.display = 'none';
-                                e.target.parentNode.style.backgroundColor = '#fecdd3'; // ピンクの単色背景へ
+                                e.target.parentNode.style.backgroundColor = '#fecdd3';
                             }}
                         />
-                        {/* オーバーレイ（半透明の白フィルター） */}
                         <div className="absolute inset-0 bg-white/85"></div>
                     </div>
                     
-                    {/* コンテンツエリア */}
                     <div className="container mx-auto px-6 relative z-10">
                         <div className="max-w-4xl mx-auto text-center animate-fade-in-up">
                             
@@ -316,7 +311,7 @@
                     years: 1, 
                     title: "1年プラン", 
                     price: "48,000", 
-                    features: ["短期導入向け", "修理保証付き", "契約満了後返却可"] 
+                    features: ["短期導入向け", "修理保証付き", "デポジット金額相当にて買取可能"] 
                 },
                 { 
                     years: 3, 
@@ -329,7 +324,7 @@
                     years: 5, 
                     title: "5年プラン", 
                     price: "17,000", 
-                    features: ["最安値プラン", "長期安定経営に", "買取オプション優遇"] 
+                    features: ["最安値プラン", "長期安定経営に", "資金繰りがラクに！"] 
                 }
             ];
 
@@ -411,7 +406,7 @@
                 {
                     icon: <Truck className="w-6 h-6 text-white" />,
                     title: "発送・納品",
-                    desc: "平日15時までの決済確認で当日出荷いたします。"
+                    desc: "原則、平日15時までの決済確認で当日出荷いたします。"
                 }
             ];
 
@@ -637,10 +632,10 @@
                             <span className="text-xl font-bold serif">Mindfitness Co.,ltd.</span>
                         </div>
                         <div className="flex flex-wrap justify-center gap-6 text-sm text-gray-400 mb-8">
-                            <a href="#" className="hover:text-white transition-colors">運営会社</a>
-                            <a href="#" className="hover:text-white transition-colors">プライバシーポリシー</a>
-                            <a href="#" className="hover:text-white transition-colors">特定商取引法に基づく表記</a>
-                            <a href="#" className="hover:text-white transition-colors">利用規約</a>
+                            <a href="https://mindf.jp" className="hover:text-white transition-colors">運営会社</a>
+                            <a href="legal.html#privacy" className="hover:text-white transition-colors">プライバシーポリシー</a>
+                            <a href="legal.html#tokusho" className="hover:text-white transition-colors">特定商取引法に基づく表記</a>
+                            <a href="legal.html#terms" className="hover:text-white transition-colors">利用規約</a>
                         </div>
                         <p className="text-xs text-gray-600">
                             © 2026 Mindfitness Co.,ltd. All rights reserved.<br/>

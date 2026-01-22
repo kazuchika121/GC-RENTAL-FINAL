@@ -1,5 +1,4 @@
-<!DOCTYPE html>
-<html lang="ja">
+Put your HTML text here<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -34,20 +33,6 @@
         }
         .drop-shadow-2xl-brand {
             filter: drop-shadow(0 25px 25px rgb(190 24 93 / 0.15));
-        }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        .animate-fadeIn {
-            animation: fadeIn 0.3s ease-out forwards;
         }
     </style>
     <script>
@@ -184,6 +169,7 @@
                             
                             <h1 className="text-3xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight tracking-tighter mb-6 drop-shadow-sm">
                                 話題のデトックスマシン<br/>
+                                {/* 修正1: 「GOD-CLEANER-GOLDを」を一行で表記 (whitespace-nowrapを使用) */}
                                 <span className="whitespace-nowrap">
                                     <span className="gradient-text">GOD-CLEANER-GOLD</span>を
                                 </span><br/>
@@ -193,6 +179,7 @@
                             </h1>
                             
                             <p className="text-sm md:text-lg text-gray-700 mb-10 leading-relaxed font-medium">
+                                {/* 修正2: 「購入する時代は終わりました。」で改行 (モバイルのみ) */}
                                 購入する時代は終わりました。<br className="md:hidden"/>
                                 月額定額制のリースシステムで、<br className="hidden lg:block"/>
                                 デトックス機器をあなた<br className="md:hidden"/>のサロンへ。
@@ -359,6 +346,7 @@
                         <div className="max-w-6xl mx-auto mb-8 px-4">
                             <div className="bg-brand-50 border border-brand-200 rounded-lg p-4 flex items-center justify-center gap-2 text-brand-800 font-bold shadow-sm">
                                 <ShieldCheck className="w-5 h-5" />
+                                {/* 修正3: デポジット記載を1行にし、税別を削除 (whitespace-nowrap) */}
                                 <span className="text-xs md:text-base whitespace-nowrap">デポジット（保証金）: 一律 33,000円</span>
                             </div>
                         </div>
@@ -620,6 +608,7 @@
                                     <h3 className="text-lg md:text-2xl font-bold text-gray-800 mb-6">お問い合わせフォーム</h3>
                                     <p className="text-gray-600 mb-8 text-sm md:text-base">
                                         以下のボタンよりGoogleフォームへ移動し、<br className="md:hidden"/>
+                                        {/* 修正4: 一行で表示するために直前で改行し、nowrapを適用 */}
                                         <span className="whitespace-nowrap">必要事項をご記入の上送信してください。</span>
                                     </p>
                                     
@@ -659,7 +648,7 @@
                             <a href="legal.html#terms" className="hover:text-white transition-colors">利用規約</a>
                         </div>
                         <p className="text-[10px] md:text-xs text-gray-600">
-                            © 2026 MindFitness Co.,ltd. All rights reserved.<br/>
+                            © 2026 Mindfitness Co.,ltd. All rights reserved.<br/>
                         </p>
                     </div>
                 </footer>
@@ -687,5 +676,51 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
-</body>
-</html>
+    <style>
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out forwards;
+        }
+    </style>
+</bod<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GOD-CLEANER-GOLD | 最新デトックスマシン導入支援</title>
+    <meta name="description" content="初期費用を抑えて始められるGOD-CLEANER-GOLD導入支援。最新のデトックスマシンを月額定額で導入可能。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Shippori+Mincho:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+        }
+        h1, h2, h3, .serif {
+            font-family: 'Shippori Mincho', serif;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #be185d, #fb7185);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        input[type=number]::-webkit-inner-spin-button, 
+        input[type=number]::-webkit-outer-spin-button { 
+            -webkit-appearance:

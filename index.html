@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
@@ -33,6 +34,20 @@
         }
         .drop-shadow-2xl-brand {
             filter: drop-shadow(0 25px 25px rgb(190 24 93 / 0.15));
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+        }
+        .animate-fadeIn {
+            animation: fadeIn 0.3s ease-out forwards;
         }
     </style>
     <script>
@@ -169,7 +184,6 @@
                             
                             <h1 className="text-3xl md:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight tracking-tighter mb-6 drop-shadow-sm">
                                 話題のデトックスマシン<br/>
-                                {/* 修正1: 「GOD-CLEANER-GOLDを」を一行で表記 (whitespace-nowrapを使用) */}
                                 <span className="whitespace-nowrap">
                                     <span className="gradient-text">GOD-CLEANER-GOLD</span>を
                                 </span><br/>
@@ -179,7 +193,6 @@
                             </h1>
                             
                             <p className="text-sm md:text-lg text-gray-700 mb-10 leading-relaxed font-medium">
-                                {/* 修正2: 「購入する時代は終わりました。」で改行 (モバイルのみ) */}
                                 購入する時代は終わりました。<br className="md:hidden"/>
                                 月額定額制のリースシステムで、<br className="hidden lg:block"/>
                                 デトックス機器をあなた<br className="md:hidden"/>のサロンへ。
@@ -346,7 +359,6 @@
                         <div className="max-w-6xl mx-auto mb-8 px-4">
                             <div className="bg-brand-50 border border-brand-200 rounded-lg p-4 flex items-center justify-center gap-2 text-brand-800 font-bold shadow-sm">
                                 <ShieldCheck className="w-5 h-5" />
-                                {/* 修正3: デポジット記載を1行にし、税別を削除 (whitespace-nowrap) */}
                                 <span className="text-xs md:text-base whitespace-nowrap">デポジット（保証金）: 一律 33,000円</span>
                             </div>
                         </div>
@@ -608,7 +620,6 @@
                                     <h3 className="text-lg md:text-2xl font-bold text-gray-800 mb-6">お問い合わせフォーム</h3>
                                     <p className="text-gray-600 mb-8 text-sm md:text-base">
                                         以下のボタンよりGoogleフォームへ移動し、<br className="md:hidden"/>
-                                        {/* 修正4: 一行で表示するために直前で改行し、nowrapを適用 */}
                                         <span className="whitespace-nowrap">必要事項をご記入の上送信してください。</span>
                                     </p>
                                     
@@ -639,7 +650,7 @@
                     <div className="container mx-auto px-6 text-center">
                         <div className="flex items-center justify-center gap-2 mb-6">
                             <Star className="w-5 h-5 text-brand-600" />
-                            <span className="text-lg md:text-xl font-bold serif">Minditness Co.,ltd.</span>
+                            <span className="text-lg md:text-xl font-bold serif">MindFitness Co.,ltd.</span>
                         </div>
                         <div className="flex flex-wrap justify-center gap-6 text-xs md:text-sm text-gray-400 mb-8">
                             <a href="https://mindf.jp" className="hover:text-white transition-colors">運営会社</a>
@@ -676,22 +687,5 @@
         const root = ReactDOM.createRoot(document.getElementById('root'));
         root.render(<App />);
     </script>
-    <style>
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        .animate-fade-in-up {
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        .animate-fadeIn {
-            animation: fadeIn 0.3s ease-out forwards;
-        }
-    </style>
 </body>
 </html>
-

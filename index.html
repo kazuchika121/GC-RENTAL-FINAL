@@ -316,20 +316,20 @@
                 { 
                     years: 1, 
                     title: "1年プラン", 
-                    price: "48,000", 
+                    price: "52,800", 
                     features: ["短期導入向け", "修理保証付き", "契約満了後返却も可"] 
                 },
                 { 
                     years: 3, 
                     title: "3年プラン", 
-                    price: "21,000", 
+                    price: "23,100", 
                     isPopular: true, 
                     features: ["おすすめプラン", "月々の負担を軽減", "3年後買取も可能！"] 
                 },
                 { 
                     years: 5, 
                     title: "5年プラン", 
-                    price: "17,000", 
+                    price: "18,700", 
                     features: ["最安値プラン", "長期安定経営に", "固定費を少なく！"] 
                 }
             ];
@@ -362,7 +362,7 @@
                                         <div className="flex items-end justify-center gap-1 text-brand-800">
                                             <span className="text-xs md:text-sm font-bold mb-2">月額</span>
                                             <span className="text-3xl md:text-4xl font-bold">{plan.price}</span>
-                                            <span className="text-xs md:text-sm font-bold mb-2">円(税別)〜</span>
+                                            <span className="text-xs md:text-sm font-bold mb-2">円(税込)〜</span>
                                         </div>
                                     </div>
                                     <ul className="space-y-4 mb-8 flex-1">
@@ -457,9 +457,9 @@
             const [customers, setCustomers] = useState(30); 
 
             const planCosts = {
-                1: 48000,
-                3: 21000,
-                5: 17000
+                1: 52800,
+                3: 23100,
+                5: 18700
             };
 
             const monthlyCost = planCosts[selectedPlan];
@@ -682,5 +682,3 @@
     </style>
 </body>
 </html>
-
-
